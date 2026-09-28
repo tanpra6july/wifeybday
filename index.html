@@ -30,33 +30,11 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:5}
 .footer{margin-top:55px;font-size:12px;opacity:.5}
 #birthdayHero{margin-top:15px}
 .sparkle{font-size:28px;display:inline-block;animation:pulse 1.5s infinite}@keyframes pulse{50%{transform:scale(1.25)}}
-
-/* Test Button Styles */
-.test-btn{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  z-index:999;
-  background:#ff4757;
-  color:#fff;
-  border:none;
-  padding:12px 20px;
-  border-radius:30px;
-  font-weight:600;
-  font-size:13px;
-  cursor:pointer;
-  box-shadow:0 10px 25px rgba(0,0,0,0.4);
-  transition:transform 0.2s;
-}
-.test-btn:hover{transform:scale(1.05);}
 </style>
 </head>
 <body>
 <canvas id="confetti"></canvas>
 <div class="bg-heart" id="hearts"></div>
-
-<!-- Test Control Button -->
-<button class="test-btn" id="testCountdownBtn">⚡ Test Countdown End (0s)</button>
 
 <main class="container">
   <div class="badge">To My Dearest Wife ❤️</div>
@@ -156,12 +134,6 @@ function openGift(){
   },450);
 }
 document.getElementById('giftWrap').onclick=()=>{if(!document.getElementById('openGift').classList.contains('hidden'))openGift()};
-
-// Testing Button Event Listener
-document.getElementById('testCountdownBtn').onclick = () => {
-  target = new Date();
-  update();
-};
 
 for(let i=0;i<22;i++){
  const h=document.createElement('div');h.className='heart';h.textContent=['♥','♡','✦'][i%3];
