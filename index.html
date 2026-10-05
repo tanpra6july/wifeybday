@@ -138,25 +138,27 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:5}
 <script>
 const TARGET_MONTH = 9; // October (0 = January)
 const TARGET_DAY = 4;
+const TARGET_YEAR = 2026;
 
 function targetDateIST(){
   const now = new Date();
-  let year = now.getUTCFullYear();
-  let target = new Date(Date.UTC(year,TARGET_MONTH,TARGET_DAY,0,0,0));
-  target = new Date(Date.UTC(year,TARGET_MONTH,TARGET_DAY-1,18,30,0));
-  if(now.getTime() >= target.getTime()){
-    year++;
-    target = new Date(Date.UTC(year,TARGET_MONTH,TARGET_DAY-1,18,30,0));
+  // Target time: October 4, 2026 00:00:00 IST (18:30 UTC of October 3)
+  const target2026 = new Date(Date.UTC(TARGET_YEAR, TARGET_MONTH, TARGET_DAY - 1, 18, 30, 0));
+  
+  // If current time is on or after Oct 4, 2026, keep target fixed at Oct 4, 2026
+  if (now.getTime() >= target2026.getTime()) {
+    return target2026;
   }
-  return target;
+  
+  return target2026;
 }
 let target = targetDateIST();
 
 function pad(n){return String(Math.max(0,n)).padStart(2,'0')}
 function update(){
   const now = new Date();
-  let diff = target-now;
-  if(diff<=0){ birthdayMode(); return; }
+  let diff = target - now;
+  if(diff <= 0){ birthdayMode(); return; }
   const s=Math.floor(diff/1000);
   document.getElementById('days').textContent=pad(Math.floor(s/86400));
   document.getElementById('hours').textContent=pad(Math.floor(s%86400/3600));
